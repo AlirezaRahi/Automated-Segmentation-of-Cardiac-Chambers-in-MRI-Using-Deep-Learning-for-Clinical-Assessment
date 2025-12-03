@@ -1,0 +1,139 @@
+# LICENSE
+
+## Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0)
+
+### Full Legal Text
+
+This repository and all its contents are licensed under the **Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License** (CC BY-NC-ND 4.0).
+
+To view a copy of this license, visit:  
+[https://creativecommons.org/licenses/by-nc-nd/4.0/](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+
+### Human-Readable Summary
+
+This is a human-readable summary of (and not a substitute for) the license. For the full legal text, please visit the link above.
+
+#### ✅ You are free to:
+
+1. **Share** — copy and redistribute the material in any medium or format
+2. **Read** and **Download** for personal use
+3. **Cite** in academic and research works (with proper attribution)
+
+The licensor cannot revoke these freedoms as long as you follow the license terms.
+
+#### 📜 Under the following terms:
+
+1. **Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+
+2. **NonCommercial** — You may not use the material for commercial purposes.
+
+3. **NoDerivatives** — If you remix, transform, or build upon the material, you may not distribute the modified material.
+
+4. **No additional restrictions** — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.
+
+#### ⚠️ Notices:
+
+- You do not have to comply with the license for elements of the material in the public domain or where your use is permitted by an applicable exception or limitation.
+- No warranties are given. The license may not give you all of the permissions necessary for your intended use. For example, other rights such as publicity, privacy, or moral rights may limit how you use the material.
+
+### Specific Permissions and Restrictions for This Repository
+
+#### Allowed Uses:
+- ✅ Personal learning and education
+- ✅ Academic research and citations
+- ✅ Non-commercial projects and experiments
+- ✅ Sharing the complete, unmodified repository
+- ✅ Creating private forks for personal use
+
+#### Prohibited Uses:
+- ❌ Commercial use of any kind
+- ❌ Distribution of modified versions
+- ❌ Incorporation into commercial software or products
+- ❌ Selling or licensing the code to third parties
+- ❌ Creating derivative works for public distribution
+
+### For Researchers and Academics
+
+Researchers are encouraged to:
+1. Use this code for academic research
+2. Cite this repository in publications:
+   ```
+   Rahi, A. (2025). Automated Segmentation of Cardiac Chambers in MRI Using Deep Learning for Clinical Assessment [Computer model]. GitHub. https://github.com/AlirezaRahi/Automated-Segmentation-of-Cardiac-Chambers-in-MRI-Using-Deep-Learning-for-Clinical-Assessment
+   ```
+3. Build upon the concepts for non-commercial research
+4. Share results and findings derived from using this code
+
+### For Industry and Commercial Entities
+
+Commercial use of this software is strictly prohibited without explicit written permission from the author. This includes but is not limited to:
+- Commercial software development
+- Paid services using this code
+- Integration into commercial products
+- Consulting services using this codebase
+- Any for-profit application
+
+### Modification and Distribution
+
+You may:
+- Create private modifications for personal use
+- Use the code internally for non-commercial purposes
+
+You may NOT:
+- Distribute modified versions publicly
+- Share adaptations or derivatives
+- Create forks with significant modifications for public distribution
+
+### Citation Requirements
+
+When using or referencing this work, you must include:
+
+1. **Author Name**: Alireza Rahi
+2. **Title**: "Automated Segmentation of Cardiac Chambers in MRI Using Deep Learning for Clinical Assessment"
+3. **Repository URL**: https://github.com/AlirezaRahi/Automated-Segmentation-of-Cardiac-Chambers-in-MRI-Using-Deep-Learning-for-Clinical-Assessment
+4. **License**: CC BY-NC-ND 4.0
+5. **DOI** (if applicable): [Will be added upon publication]
+
+### Alternative Licensing
+
+For commercial licensing, academic collaboration, or permissions beyond the scope of this license, please contact the author directly:
+
+**Alireza Rahi**  
+- Email: alireza.rahi@outlook.com  
+- LinkedIn: https://www.linkedin.com/in/alireza-rahi-6938b4154/
+
+### License Compatibility
+
+This license is compatible with:
+- Academic research
+- Open source non-commercial projects
+- Educational materials
+- Personal learning projects
+
+This license is NOT compatible with:
+- Commercial software licenses (MIT, Apache, GPL, etc.)
+- Proprietary software development
+- For-profit applications
+
+### Important Notes
+
+1. **Software Dependencies**: This license applies only to the original work in this repository. Third-party libraries and dependencies have their own licenses that must be respected.
+
+2. **Data**: The ACDC dataset referenced in this repository has its own terms of use and license. Users are responsible for complying with the dataset's license terms.
+
+3. **Medical Disclaimer**: This software is for research purposes only. It is not intended for clinical use without proper validation and regulatory approval.
+
+4. **No Warranty**: THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+
+### Legal Code
+
+For the complete legal text of the CC BY-NC-ND 4.0 license, please visit:  
+[https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode)
+
+### Version History
+
+- **Version 1.0**: December 2025 - Initial license implementation
+- All future changes to this license will be documented in this section
+
+---
+
+© 2025 Alireza Rahi. All rights reserved for commercial use. Licensed under CC BY-NC-ND 4.0 for non-commercial use.
