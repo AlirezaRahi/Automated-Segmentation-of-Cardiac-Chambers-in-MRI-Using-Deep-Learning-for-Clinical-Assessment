@@ -15,7 +15,7 @@ from collections import Counter
 import joblib
 import h5py
 
-# اضافه کردن مسیر برای import دیتالودر
+
 sys.path.append('C:\\Alex The Great\\Project\\medai-env\\Scikit-learn\\session10')
 
 # ---------------------- ACDC Data Pipeline Fixed ----------------------
@@ -25,7 +25,7 @@ class ACDCDataPipeline:
         self.target_size = target_size
     
     def prepare_data(self, patient_ids, data_type='training_volumes', batch_size=32, augment=True):
-        """آماده‌سازی داده برای ACDC - نسخه اصلاح شده"""
+       
         frames = []
         masks = []
         
@@ -46,11 +46,11 @@ class ACDCDataPipeline:
                         if data is None:
                             continue
                             
-                        # استخراج image و mask از فایل H5 - روش صحیح
+                       
                         image_key = None
                         mask_key = None
                         
-                        # پیدا کردن کلیدهای صحیح
+                        
                         for k in data.keys():
                             if 'image' in k.lower() or 'img' in k.lower():
                                 image_key = k
@@ -58,7 +58,7 @@ class ACDCDataPipeline:
                                 mask_key = k
                         
                         if image_key is None or mask_key is None:
-                            # اگر کلیدهای استاندارد پیدا نشد، از اولین datasetها استفاده کن
+                          
                             keys = list(data.keys())
                             if len(keys) >= 2:
                                 image_key = keys[0]
@@ -69,18 +69,18 @@ class ACDCDataPipeline:
                         image_data = data[image_key][:]
                         mask_data = data[mask_key][:]
                         
-                        # پردازش بسته به ابعاد داده
+                      
                         if len(image_data.shape) == 3:  # حجم (depth, height, width)
-                            # استفاده از تمام اسلایس‌ها
+                           
                             for slice_idx in range(image_data.shape[0]):
                                 image_slice = image_data[slice_idx]
                                 mask_slice = mask_data[slice_idx]
                                 
-                                # تغییر سایز
+                             
                                 image_resized = cv2.resize(image_slice, self.target_size, interpolation=cv2.INTER_AREA)
                                 mask_resized = cv2.resize(mask_slice, self.target_size, interpolation=cv2.INTER_NEAREST)
                                 
-                                # نرمال‌سازی
+                              
                                 if image_resized.max() > image_resized.min():
                                     image_normalized = (image_resized - image_resized.min()) / (image_resized.max() - image_resized.min() + 1e-8)
                                 else:
@@ -89,12 +89,12 @@ class ACDCDataPipeline:
                                 frames.append(image_normalized)
                                 masks.append(mask_resized)
                         
-                        elif len(image_data.shape) == 2:  # اسلایس تک (height, width)
-                            # تغییر سایز
+                        elif len(image_data.shape) == 2:  
+                            
                             image_resized = cv2.resize(image_data, self.target_size, interpolation=cv2.INTER_AREA)
                             mask_resized = cv2.resize(mask_data, self.target_size, interpolation=cv2.INTER_NEAREST)
                             
-                            # نرمال‌سازی
+                          
                             if image_resized.max() > image_resized.min():
                                 image_normalized = (image_resized - image_resized.min()) / (image_resized.max() - image_resized.min() + 1e-8)
                             else:
@@ -108,7 +108,7 @@ class ACDCDataPipeline:
                 continue
         
         if len(frames) == 0:
-            # روش جایگزین: استفاده مستقیم از فایل‌ها
+          
             print("Trying alternative data loading method...")
             frames, masks = self._load_data_directly(patient_ids, data_type)
         
@@ -116,18 +116,18 @@ class ACDCDataPipeline:
             raise ValueError("No valid samples found after all attempts!")
         
         frames = np.array(frames)
-        if len(frames.shape) == 3:  # اگر بعد کانال وجود ندارد
+        if len(frames.shape) == 3: 
             frames = frames[..., np.newaxis]
         
         masks = np.array(masks)
         
-        # بررسی توزیع کلاس‌ها
+       
         all_mask_values = masks.flatten()
         class_counts = Counter(all_mask_values)
         print(f"Class distribution: {dict(class_counts)}")
         print(f"ACDC data prepared: {frames.shape} frames, {masks.shape} masks")
         
-        # ایجاد dataset
+      
         dataset = tf.data.Dataset.from_tensor_slices((frames, masks))
         dataset = dataset.shuffle(1000)
         
@@ -140,7 +140,7 @@ class ACDCDataPipeline:
         return dataset
     
     def _load_data_directly(self, patient_ids, data_type):
-        """لود مستقیم داده از فایل‌ها"""
+      
         frames = []
         masks = []
         
@@ -155,7 +155,7 @@ class ACDCDataPipeline:
             base_path = self.data_loader.testing_volumes_path
         
         for patient_id in patient_ids:
-            # پیدا کردن فایل‌های مربوط به بیمار
+          
             patient_files = [f for f in file_list if patient_id in f]
             
             for filename in patient_files:
@@ -163,16 +163,16 @@ class ACDCDataPipeline:
                     file_path = os.path.join(base_path, filename)
                     
                     with h5py.File(file_path, 'r') as f:
-                        # بررسی کلیدهای موجود
+                      
                         keys = list(f.keys())
                         print(f"File {filename} keys: {keys}")
                         
                         if len(keys) >= 2:
-                            # فرض می‌کنیم اولین کلید image و دومین کلید mask است
+                        
                             image_data = f[keys[0]][:]
                             mask_data = f[keys[1]][:]
                             
-                            # پردازش داده
+                          
                             if len(image_data.shape) == 3:
                                 for slice_idx in range(image_data.shape[0]):
                                     image_slice = image_data[slice_idx]
@@ -208,25 +208,25 @@ class ACDCDataPipeline:
         return frames, masks
     
     def _augment_data(self, frame, mask):
-        """افزونه‌سازی داده برای ACDC"""
+       
         mask_expanded = tf.expand_dims(mask, axis=-1)
         
-        # چپ-راست
+       
         if tf.random.uniform(()) > 0.5:
             frame = tf.image.flip_left_right(frame)
             mask_expanded = tf.image.flip_left_right(mask_expanded)
         
-        # بالا-پایین
+       
         if tf.random.uniform(()) > 0.5:
             frame = tf.image.flip_up_down(frame)
             mask_expanded = tf.image.flip_up_down(mask_expanded)
         
-        # چرخش
+     
         k = tf.random.uniform([], 0, 4, dtype=tf.int32)
         frame = tf.image.rot90(frame, k)
         mask_expanded = tf.image.rot90(mask_expanded, k)
         
-        # تغییر روشنایی
+      
         frame = tf.image.random_brightness(frame, max_delta=0.1)
         frame = tf.clip_by_value(frame, 0.0, 1.0)
         
@@ -244,7 +244,7 @@ class ACDCDeepUNet:
         os.makedirs(self.checkpoint_dir, exist_ok=True)
     
     def build_deep_unet(self):
-        """ساخت مدل Deep U-Net برای ACDC"""
+       
         inputs = layers.Input(shape=self.input_shape)
         
         # Encoder
@@ -295,7 +295,7 @@ class ACDCDeepUNet:
         return model
     
     def compile(self, learning_rate=1e-3):
-        """کامپایل مدل"""
+      
         self.model.compile(
             optimizer=optimizers.Adam(learning_rate=learning_rate),
             loss='sparse_categorical_crossentropy',
@@ -304,11 +304,11 @@ class ACDCDeepUNet:
         print(f"Compiled {self.name}")
     
     def train(self, train_dataset, val_dataset, epochs=100, initial_epoch=0):
-        """آموزش مدل با ذخیره بهترین وزن‌ها"""
+      
         best_model_path = os.path.join(self.checkpoint_dir, f'best_{self.name}.h5')
         resume_checkpoint = os.path.join(self.checkpoint_dir, f'resume_{self.name}.h5')
         
-        # چک کردن وجود مدل برای ادامه آموزش
+      
         if initial_epoch > 0 and os.path.exists(resume_checkpoint):
             print(f"Resuming training from epoch {initial_epoch}")
             self.model.load_weights(resume_checkpoint)
@@ -375,7 +375,7 @@ class Evaluator:
         os.makedirs(self.results_dir, exist_ok=True)
     
     def evaluate(self, model, X_test, y_test):
-        """ارزیابی مدل - فقط U-Net اولی"""
+      
         print("="*60)
         print("SINGLE MODEL EVALUATION (U-Net V1)")
         print("="*60)
@@ -384,19 +384,19 @@ class Evaluator:
         
         print(f"Evaluating U-Net V1...")
         
-        # کامپایل مدل برای ارزیابی
+       
         model.compile(
             optimizer='adam',
             loss='sparse_categorical_crossentropy',
             metrics=['accuracy']
         )
         
-        # پیش‌بینی
+     
         print("Predicting...")
         y_pred_proba = model.predict(X_test, verbose=1, batch_size=4)
         y_pred = np.argmax(y_pred_proba, axis=-1)
         
-        # محاسبه متریک‌ها
+      
         print("Calculating metrics...")
         metrics = self._calculate_all_metrics(y_test, y_pred)
         results['acdc_unet_v1'] = metrics
@@ -411,13 +411,13 @@ class Evaluator:
             dice = metrics['dice_scores'][str(i)]
             print(f"{class_name}: {dice:.4f}")
         
-        # ذخیره نتایج
+      
         self._save_results(results, X_test, y_test)
         
         return results
     
     def _calculate_all_metrics(self, y_true, y_pred):
-        """محاسبه تمام متریک‌ها"""
+      
         from sklearn.metrics import accuracy_score
         
         # Accuracy
@@ -448,10 +448,10 @@ class Evaluator:
         }
     
     def _save_results(self, results, X_test, y_test):
-        """ذخیره نتایج"""
+      
         print("Saving results...")
         
-        # ذخیره JSON
+     
         results_file = os.path.join(self.results_dir, 'results.json')
         with open(results_file, 'w') as f:
             json.dump({
@@ -465,14 +465,14 @@ class Evaluator:
         
         print(f"Results saved: {results_file}")
         
-        # ایجاد گزارش متنی
+        
         self._create_report(results)
         
-        # ایجاد نمودارها
+       
         self._create_plots(results, X_test, y_test)
     
     def _create_report(self, results):
-        """ایجاد گزارش متنی"""
+        
         report_file = os.path.join(self.results_dir, 'report.txt')
         
         with open(report_file, 'w') as f:
@@ -501,12 +501,12 @@ class Evaluator:
         print(f"Report saved: {report_file}")
     
     def _create_plots(self, results, X_test, y_test):
-        """ایجاد نمودارها - فقط برای U-Net اولی"""
+      
         print("Creating plots for U-Net V1...")
         
         plt.figure(figsize=(15, 10))
         
-        # 1. نمایش Dice Scores برای کلاس‌های مختلف
+       
         plt.subplot(2, 3, 1)
         
         if 'acdc_unet_v1' in results:
@@ -527,7 +527,7 @@ class Evaluator:
                 plt.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.01,
                         f'{score:.3f}', ha='center', va='bottom', fontweight='bold')
         
-        # 2. نمونه تصویر اول
+      
         plt.subplot(2, 3, 2)
         if len(X_test) > 0:
             sample_idx = 0
@@ -535,7 +535,7 @@ class Evaluator:
             plt.title(f'Sample Image {sample_idx+1}')
             plt.axis('off')
         
-        # 3. Ground Truth برای نمونه اول
+        
         plt.subplot(2, 3, 3)
         if len(y_test) > 0:
             sample_idx = 0
@@ -543,19 +543,18 @@ class Evaluator:
             plt.title(f'Ground Truth {sample_idx+1}')
             plt.axis('off')
         
-        # 4. پیش‌بینی مدل برای نمونه اول
+       
         plt.subplot(2, 3, 4)
         if len(X_test) > 0 and 'acdc_unet_v1' in results:
             sample_idx = 0
             
-            # برای نمایش پیش‌بینی نیاز به لود مجدد مدل داریم
-            # اینجا یک نمونه ساده نشان می‌دهیم
+           
             if len(X_test) > sample_idx:
                 plt.imshow(X_test[sample_idx].squeeze(), cmap='gray')
                 plt.title(f'Input for Prediction')
                 plt.axis('off')
         
-        # 5. مقایسه کلاس‌ها
+    
         plt.subplot(2, 3, 5)
         if 'acdc_unet_v1' in results:
             model_results = results['acdc_unet_v1']
@@ -563,7 +562,7 @@ class Evaluator:
             class_names = ['Background', 'RV', 'Myocardium', 'LV']
             dice_scores = [model_results['dice_scores'][str(i)] for i in range(4)]
             
-            # نمودار خطی
+           
             plt.plot(class_names, dice_scores, 'o-', linewidth=2, markersize=8, color='blue')
             plt.fill_between(class_names, dice_scores, alpha=0.2, color='blue')
             
@@ -572,11 +571,11 @@ class Evaluator:
             plt.ylim(0, 1)
             plt.grid(True, alpha=0.3)
             
-            # اضافه کردن مقادیر روی نقاط
+          
             for i, score in enumerate(dice_scores):
                 plt.text(i, score + 0.02, f'{score:.3f}', ha='center', va='bottom', fontsize=9)
         
-        # 6. خلاصه نتایج
+      
         plt.subplot(2, 3, 6)
         plt.axis('off')
         
@@ -619,11 +618,11 @@ class Evaluator:
         print(f"Plots saved: {plot_path}")
         plt.show()
         
-        # ایجاد یک نمودار اضافی برای نمایش بصری بهتر
+    
         self._create_detailed_plot(results, X_test, y_test)
     
     def _create_detailed_plot(self, results, X_test, y_test):
-        """ایجاد نمودارهای دقیق‌تر"""
+     
         if 'acdc_unet_v1' not in results:
             return
             
@@ -631,7 +630,7 @@ class Evaluator:
         
         model_results = results['acdc_unet_v1']
         
-        # 1. نمودار میله‌ای عمودی برای Dice scores
+       
         plt.subplot(2, 2, 1)
         class_names = ['Background', 'RV', 'Myocardium', 'LV']
         dice_scores = [model_results['dice_scores'][str(i)] for i in range(4)]
@@ -645,12 +644,11 @@ class Evaluator:
         plt.ylim(0, 1.1)
         plt.grid(axis='y', alpha=0.3)
         
-        # اضافه کردن مقادیر
         for i, (bar, score) in enumerate(zip(bars, dice_scores)):
             plt.text(i, bar.get_height() + 0.02, f'{score:.3f}', 
                     ha='center', va='bottom', fontweight='bold')
         
-        # 2. نمودار دایره‌ای
+     
         plt.subplot(2, 2, 2)
         explode = (0.05, 0.05, 0.05, 0.05)
         plt.pie(dice_scores, labels=class_names, autopct='%1.1f%%',
@@ -658,7 +656,7 @@ class Evaluator:
                 shadow=True)
         plt.title('Dice Score Distribution', fontweight='bold')
         
-        # 3. نمایش یک نمونه
+       
         plt.subplot(2, 2, 3)
         if len(X_test) > 0:
             sample_idx = 10  # نمونه وسط
@@ -666,7 +664,7 @@ class Evaluator:
             plt.title(f'Input Image (Sample {sample_idx+1})')
             plt.axis('off')
         
-        # 4. خلاصه عددی
+       
         plt.subplot(2, 2, 4)
         plt.axis('off')
         
@@ -709,12 +707,12 @@ def main():
     print("="*70)
     
     try:
-        # لود دیتالودر
+        
         from data_loaders.acdc_loader import ACDCLoader
         data_loader = ACDCLoader()
         print("ACDC Data loader loaded")
         
-        # دریافت بیماران
+       
         all_patient_ids = []
         for filename in data_loader.training_volumes:
             info = data_loader.parse_filename(filename)
@@ -724,13 +722,13 @@ def main():
         all_patient_ids = sorted(list(set(all_patient_ids)))
         print(f"Total patients: {len(all_patient_ids)}")
         
-        # تقسیم داده
+       
         train_patients, temp_patients = train_test_split(all_patient_ids, test_size=0.3, random_state=42)
         val_patients, test_patients = train_test_split(temp_patients, test_size=0.5, random_state=42)
         
         print(f"Split: Train={len(train_patients)}, Val={len(val_patients)}, Test={len(test_patients)}")
         
-        # آماده‌سازی داده
+       
         data_pipeline = ACDCDataPipeline(data_loader)
         
         print("Preparing training data...")
@@ -742,7 +740,7 @@ def main():
         print("Preparing test data...")
         test_dataset = data_pipeline.prepare_data(test_patients, 'training_volumes', batch_size=4, augment=False)
         
-        # ساخت مدل
+       
         print("Building U-Net model...")
         model = ACDCDeepUNet(input_shape=(192, 192, 1), num_classes=4, name="acdc_unet_v1")
         model.compile(learning_rate=1e-3)
@@ -753,7 +751,7 @@ def main():
         
         model.train(train_dataset, val_dataset, epochs=100)
         
-        # ارزیابی مدل
+       
         print("="*50)
         print("Evaluating Model...")
         print("="*50)
