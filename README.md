@@ -104,7 +104,7 @@ data/
 sys.path.append('path/to/your/data/directory')
 ```
 
-## 🏃‍♂️ Usage Instructions
+##  Usage Instructions
 
 ### Training the Model
 
@@ -149,7 +149,7 @@ acdc_evaluation_YYYYMMDD_HHMMSS/
 └── u-net_v1_detailed_analysis.png    # Detailed analysis plots
 ```
 
-## 🏗️ Model Architecture
+##  Model Architecture
 
 ### Deep U-Net Design
 
@@ -312,7 +312,7 @@ Researchers are encouraged to use, cite, and build upon this work for non-commer
 - Web interface development
 - Documentation enhancements
 
-## ❓ Frequently Asked Questions
+##  Frequently Asked Questions
 
 ### Q1: What GPU requirements are needed?
 **A**: Minimum 8GB GPU memory for training, 4GB for inference. RTX 2080 or higher recommended.
@@ -379,14 +379,14 @@ Planned enhancements include:
    - Longitudinal analysis tools
    - Multi-modal fusion (MRI+CT)
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - **ACDC Challenge Organizers** for providing the dataset
 - **TensorFlow Team** for the deep learning framework
 - **Medical Imaging Research Community** for valuable resources and tools
 - **Clinical Collaborators** for domain expertise and validation
 
-## 📚 References
+##  References
 
 1. Bernard, O., Lalande, A., Zotti, C., et al. (2018). Deep Learning Techniques for Automatic MRI Cardiac Multi-structures Segmentation and Diagnosis: Is the Problem Solved? IEEE Transactions on Medical Imaging.
 2. Isensee, F., Jaeger, P. F., Kohl, S. A., et al. (2021). nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation. Nature Methods.
@@ -394,12 +394,12 @@ Planned enhancements include:
 4. Litjens, G., Kooi, T., Bejnordi, B. E., et al. (2017). A survey on deep learning in medical image analysis. Medical Image Analysis.
 5. Chen, C., Qin, C., Qiu, H., et al. (2020). Deep learning for cardiac image segmentation: A review. Frontiers in Cardiovascular Medicine.
 
-## 📞 Contact
+##  Contact
 
 **Alireza Rahi**  
-- 📧 Email: alireza.rahi@outlook.com  
-- 💼 LinkedIn: [Alireza Rahi](https://www.linkedin.com/in/alireza-rahi-6938b4154/)  
-- 💻 GitHub: [AlirezaRahi](https://github.com/AlirezaRahi)  
+-  Email: alireza.rahi@outlook.com  
+-  LinkedIn: [Alireza Rahi](https://www.linkedin.com/in/alireza-rahi-6938b4154/)  
+-  GitHub: [AlirezaRahi](https://github.com/AlirezaRahi)  
 
 For questions, collaborations, or support, please feel free to reach out.
 
