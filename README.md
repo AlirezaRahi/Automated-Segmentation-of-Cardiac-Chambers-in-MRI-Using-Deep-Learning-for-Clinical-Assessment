@@ -274,10 +274,10 @@ If you use this code in your research, please cite:
 ###  Publication
 
 **Title:** Automated Segmentation of Cardiac Chambers in MRI Using Deep Learning for Clinical Assessment  
-**Journal:** *[Journal Name - Under Review]*  
-**DOI:** *[DOI will be added upon publication]*  
-**Publication Date:** *[Date will be added upon publication]*  
-**URL:** *[URL will be added upon publication]*
+**Journal:** *[]*  
+**DOI:** *[]*  
+**Publication Date:** *[]*  
+**URL:** *[]*
 
 ##  License
 
