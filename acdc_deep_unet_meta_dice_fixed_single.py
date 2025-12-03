@@ -659,7 +659,7 @@ class Evaluator:
        
         plt.subplot(2, 2, 3)
         if len(X_test) > 0:
-            sample_idx = 10  # نمونه وسط
+            sample_idx = 10 
             plt.imshow(X_test[sample_idx].squeeze(), cmap='gray')
             plt.title(f'Input Image (Sample {sample_idx+1})')
             plt.axis('off')
@@ -756,7 +756,7 @@ def main():
         print("Evaluating Model...")
         print("="*50)
         
-        # تبدیل test dataset به numpy arrays برای ارزیابی
+       
         frames_list = []
         masks_list = []
         for batch in test_dataset:
