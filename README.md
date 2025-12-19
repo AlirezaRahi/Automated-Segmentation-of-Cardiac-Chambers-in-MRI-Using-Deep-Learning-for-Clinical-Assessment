@@ -34,6 +34,8 @@ This repository is designed for:
 - **Clinical Readiness**: Designed with clinical deployment considerations
 
 ##  Performance Results
+![Segmentation Results](Figure_1.png)
+![Dice Scores](Figure_2.png)
 
 The proposed deep learning framework was evaluated on the independent test set of the ACDC dataset, comprising 20 patient volumes not seen during training or validation. The model achieved an overall accuracy of **0.9913** and a mean Dice coefficient of **0.8968**, demonstrating strong performance across all cardiac structures.
 
