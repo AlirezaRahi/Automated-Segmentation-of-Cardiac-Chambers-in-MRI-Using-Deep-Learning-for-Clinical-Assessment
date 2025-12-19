@@ -303,6 +303,8 @@ If you use this code in your research, please cite:
 **Publication Date:** *[09 Dec 2025]*  
 **URL:** *[https://www.techrxiv.org/users/967209/articles/1366821-automated-segmentation-of-cardiac-chambers-in-mri-using-deep-learning-for-clinical-assessment]*
 
+> GitHub Release: v1.0.0
+
 ##  License
 
 This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0).
