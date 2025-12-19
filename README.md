@@ -1,3 +1,8 @@
+![Python](https://img.shields.io/badge/python-3.8+-blue)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange)
+![Medical Imaging](https://img.shields.io/badge/domain-cardiac--MRI-red)
+![Status](https://img.shields.io/badge/status-research-green)
+
 # Automated Segmentation of Cardiac Chambers in MRI Using Deep Learning for Clinical Assessment
 
 ##  Overview
@@ -11,13 +16,20 @@ The model accurately delineates four critical cardiac structures:
 - **Background**
 
 This tool is particularly valuable for clinical applications such as ventricular volume estimation, ejection fraction calculation, and myocardial mass assessment - essential metrics in cardiology.
+## Who Should Use This Repository
+
+This repository is designed for:
+- Medical imaging researchers working on cardiac MRI
+- Deep learning practitioners in biomedical segmentation
+- Graduate students participating in medical imaging challenges (e.g., ACDC)
+- Clinicians and engineers exploring automated cardiac analysis tools
 
 ##  Key Features
 
 - **Deep U-Net Architecture**: Custom-built neural network with encoder-decoder structure for precise segmentation
 - **Multi-class Segmentation**: Simultaneous identification of RV, LV, myocardium, and background
 - **Data Augmentation**: Advanced augmentation techniques for improved generalization
-- **Meta-Learning Integration**: Enhanced performance through ensemble learning strategies
+- **Meta-Learning Integration**: Performance enhancement via ensemble-style training strategies
 - **Comprehensive Evaluation**: Extensive metrics including Dice coefficient, accuracy, and confusion matrices
 - **Clinical Readiness**: Designed with clinical deployment considerations
 
