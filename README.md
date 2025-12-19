@@ -91,6 +91,13 @@ matplotlib>=3.3.0
 h5py>=3.1.0
 joblib>=1.0.0
 ```
+### Expected Output
+
+After training completes, the following outputs are generated:
+- Quantitative metrics (Dice, accuracy)
+- Segmentation visualizations
+- Saved model weights
+- Evaluation reports in `acdc_evaluation_*` directory
 
 ##  Dataset Setup
 
@@ -111,6 +118,9 @@ data/
     ├── patient102/
     └── ...
 ```
+> ⚠️ **Data Usage Notice**  
+> The ACDC dataset is subject to its own licensing and usage terms.  
+> Users must ensure compliance with the original dataset agreement.
 
 3. **Update the data path** in the main script:
 ```python
